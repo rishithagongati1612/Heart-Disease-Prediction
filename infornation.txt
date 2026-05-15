@@ -1,0 +1,56 @@
+The user input for the heart disease prediction model consists of various health-related parameters that the model uses to predict whether a person is at risk of heart disease. Here are the inputs you will need from the user:
+
+Input Fields for the User:
+Age: The user's age (numeric).
+Sex: Gender of the user.
+1 = Male
+0 = Female
+Chest Pain Type (cp): Type of chest pain experienced.
+0 = Typical angina
+1 = Atypical angina
+2 = Non-anginal pain
+3 = Asymptomatic
+Resting Blood Pressure (trestbps): The resting blood pressure of the user in mm Hg (numeric).
+Cholesterol (chol): Serum cholesterol level in mg/dl (numeric).
+Fasting Blood Sugar (fbs): Is fasting blood sugar > 120 mg/dl?
+1 = True (greater than 120 mg/dl)
+0 = False (less than or equal to 120 mg/dl)
+Resting ECG (restecg): Resting electrocardiographic results.
+0 = Normal
+1 = Having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV)
+2 = Left ventricular hypertrophy based on Estes' criteria
+Max Heart Rate Achieved (thalach): Maximum heart rate achieved (numeric).
+Exercise Induced Angina (exang): Does exercise induce angina?
+1 = Yes
+0 = No
+ST Depression (oldpeak): ST depression induced by exercise relative to rest (numeric, float).
+Slope of Peak Exercise ST Segment (slope): The slope of the peak exercise ST segment.
+0 = Upsloping
+1 = Flat
+2 = Downsloping
+Number of Major Vessels Colored by Fluoroscopy (ca): Number of major vessels (0-3) colored by fluoroscopy (numeric).
+Thalassemia (thal): A blood disorder involving less than normal amounts of an oxygen-carrying protein.
+0 = Normal
+1 = Fixed defect
+2 = Reversible defect
+Example of User Input:
+Here’s what the user input might look like:
+
+Field	Example Value
+Age	50
+Sex	1 (Male)
+Chest Pain Type	2 (Non-anginal pain)
+Resting Blood Pressure (trestbps)	140
+Cholesterol (chol)	230
+Fasting Blood Sugar (fbs)	0 (No)
+Resting ECG (restecg)	1 (ST-T wave abnormality)
+Max Heart Rate (thalach)	150
+Exercise Induced Angina (exang)	0 (No)
+ST Depression (oldpeak)	1.5
+Slope of Peak Exercise ST Segment	1 (Flat)
+Number of Major Vessels (ca)	0
+Thalassemia (thal)	1 (Fixed defect)
+Input Form Layout:
+This is the data that users will provide via the form, and your machine learning model will use this data to predict whether heart disease is present.
+
+Let me know if you need help customizing these inputs for

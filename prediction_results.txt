@@ -1,0 +1,7 @@
+Date: 2024-12-07
+Name: None, Age: 20
+Prediction: No Heart Disease detected. You do not need to consult a doctor.
+Food Recommendations: Oatmeal, Fruits, Vegetables, Whole grains, Nuts
+Exercise Recommendations: Walking, Yoga, Swimming, Cycling
+Health Tips: Maintain a balanced diet rich in fruits, vegetables, whole grains, and lean proteins., Engage in at least 150 minutes of moderate aerobic activity each week., Stay hydrated by drinking plenty of water throughout the day., Limit sodium intake to help manage blood pressure., Get adequate sleep, aiming for 7-9 hours per night., Avoid smoking and limit alcohol consumption., Manage stress through relaxation techniques such as yoga or meditation.
+

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/static/images/mha.jpg'); /* Add your image URL here */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 90%;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            color: #fff;
+            padding: 20px 0;
+            font-size: 2em;
+            font-weight: 700;
+            border-radius: 10px 10px 0 0;
+            margin: -20px -20px 40px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #ffffff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-top: -75px;
+        }
+
+        .profile-info h2 {
+            font-size: 1.8em;
+            color: #007bff;
+            margin-top: 15px;
+        }
+
+        .profile-info p {
+            font-size: 1.1em;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .contact-info div {
+            margin: 10px 0;
+            color: #007bff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-info div i {
+            margin-right: 10px;
+            color: #0056b3;
+        }
+
+        .social-media {
+            margin-top: 20px;
+        }
+
+        .social-media a {
+            margin: 0 10px;
+            color: #007bff;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+
+        .social-media a:hover {
+            color: #0056b3;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 10px;
+            }
+            .profile-info h2 {
+                font-size: 1.5em;
+            }
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Profile</div>
+        <img src="/static/images/mha.jpg" alt="Profile Image" class="profile-image"> <!-- Replace with actual image -->
+
+        <div class="profile-info">
+            <h2>Hello, Your Name</h2>
+            <p>Job Title or Role</p>
+            <p>Company or Organization</p>
+            <p>Brief bio or description</p>
+        </div>
+
+        <div class="contact-info">
+            <div><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:mywebsiteHDP@gmail.com" title="Email">mywebsiteHDP@gmail.com</a></div>
+            <div><i class="fas fa-phone-alt" aria-hidden="true"></i> 8143770605</div>
+            <div><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Hyderabad, India</div>
+        </div>
+
+        <div class="social-media">
+            <a href="https://twitter.com/YourProfile" title="Twitter" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://facebook.com/YourProfile" title="Facebook" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/YourProfile" title="Instagram" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com/in/YourProfile" title="LinkedIn" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <a href="javascript:history.back()" class="back-button">Back</a>
+    </div>
+</body>
+</html>

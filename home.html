@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Care Predictor - Home</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+            color: #333;
+            background-color: #2524245b;
+            background: url('/static/images/mha.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        header {
+            background-color: #00000099;
+            color: #006400;
+            padding: 10px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+        }
+        header h1 img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        header form {
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+        header form input {
+        padding: 8px 12px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 25px;
+        outline: none;
+        width: 200px;
+        transition: width 0.3s ease-in-out;
+        }
+        header form input:focus {
+        width: 250px;
+        }
+
+        header form button {
+        margin-left: 5px;
+        padding: 8px 12px; /* Reduced padding to make the button smaller */
+        font-size: 0.9rem;  /* Smaller font size */
+        border-radius: 25px; /* Adjusted border-radius to match input field curve */
+        cursor: pointer;
+        border: 2px solid #006400;
+        background-color: #006400;
+        color: white;
+        }
+        header form button:hover {
+        background-color: #004d00;
+        }
+
+        .hero {
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin: 20px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-family: 'Lato', sans-serif;
+            font-style: italic;
+        }
+        .hero .cta button {
+            padding: 15px 25px;
+            margin: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Lato', sans-serif;
+        }
+        .btn-primary {
+            background-color: #006400;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #004d00;
+        }
+        .btn-secondary {
+            background-color: white;
+            color: #006400;
+            border: 2px solid #006400;
+        }
+        .btn-secondary:hover {
+            background-color: #e6f9e6;
+        }
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        section h2 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        section p {
+            font-size: 1.2rem;
+            margin: 15px 0;
+        }
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background-color: #f4f4f472;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 280px;
+        }
+        .feature-card h3 {
+            font-size: 1.8rem;
+            color: #006400;
+            margin-bottom: 15px;
+        }
+        .feature-card p {
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+        }
+        footer a {
+            color: #00c851;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .health-tips {
+            background-color: #00000099;
+            padding: 40px 20px;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+        .health-tips h2 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .health-tips p {
+            font-size: 1.1rem;
+            color: #0fd139;
+        }
+
+        /* New futuristic feature styling */
+        .predictive-analyzer {
+            background-color: #00000099;
+            padding: 40px 20px;
+            border-radius: 8px;
+            margin-top: 50px;
+            color: white;
+        }
+        .predictive-analyzer h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .predictive-analyzer input,
+        .predictive-analyzer select {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .predictive-analyzer button {
+            background-color: #006400;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .predictive-analyzer button:hover {
+            background-color: #004d00;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            padding: 10px;
+            background-color: #006400;
+            color: white;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .hero .cta button {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+            .features {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>
+            <img src="/static/images/nav.gif" alt="Heart Logo" />
+            Heart Care Predictor
+        </h1>
+        <form id="searchForm">
+            <input type="text" id="searchInput" placeholder="Search..." aria-label="Search" />
+            <button type="submit" class="btn-secondary">Search</button>
+        </form>
+        <a href="/about">About Us</a>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to Heart Care Predictor!</h1>
+        <p>Heart disease prediction.</p>
+        <div class="cta">
+            <button class="btn-primary" onclick="window.location.href = '/';">Predict Now</button>
+            <button class="btn-secondary" onclick="document.getElementById('latest-updates').scrollIntoView({ behavior: 'smooth' });">Learn More</button>
+        </div>
+    </section>
+
+    <section id="latest-updates">
+        <h2>Latest Updates</h2>
+        <div class="features">
+            <div class="feature-card">
+                <h3>How to take care of your heart health</h3>
+                <p>Eat a heart-healthy diet...</p>
+                <button class="btn-1" onclick="window.open('https://www.who.int/philippines/news/feature-stories/detail/how-to-take-care-of-your-heart-health', '_blank')">Read More</button>
+            </div>
+            <div class="feature-card">
+                <h3>Heart medicines</h3>
+                <p>Some commonly prescribed heart medications include...</p>
+                <button class="btn-2" onclick="window.open('https://www.heart.org/en/health-topics/heart-attack/treatment-of-a-heart-attack/cardiac-medications', '_blank')">Read More</button>
+            </div>
+            <div class="feature-card">
+                <h3>Foods That Can Save Your Heart</h3>
+                <p>To protect your heart, focus on a diet rich in...</p>
+                <button class="btn-3" onclick="window.open('https://www.webmd.com/heart-disease/ss/slideshow-foods-to-save-your-heart', '_blank')">Read More</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="health-tips">
+        <h2>Health Tip of the Day</h2>
+        <p>Keep your heart healthy by exercising regularly! Aim for at least 30 minutes of moderate-intensity activity most days of the week. Remember, a healthy heart means a healthy life!</p>
+    </section>
+
+    <!-- Futuristic Predictive Health Analyzer -->
+    <section class="predictive-analyzer">
+        <h2>Futuristic Predictive Health Analyzer</h2>
+        <p>Provide your health details below to receive a heart disease risk prediction based on your profile.</p>
+        <form id="predictForm">
+            <input type="number" id="age" placeholder="Enter your age" required />
+            <input type="number" id="weight" placeholder="Enter your weight (kg)" required />
+            <select id="smoking" required>
+                <option value="">Smoking habits</option>
+                <option value="smoker">Smoker</option>
+                <option value="non-smoker">Non-Smoker</option>
+            </select>
+            <button type="submit">Predict Risk</button>
+        </form>
+        <div class="result" id="result" style="display: none;"></div>
+    </section>
+
+    <footer>
+        <p>Heart Care Predictor.</p>
+        <p>Connect with us on 
+            <a href="#">Facebook</a>, 
+            <a href="#">Twitter</a>, 
+            <a href="#">LinkedIn</a>.
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const sections = document.querySelectorAll('section');
+            let found = false;
+
+            sections.forEach(section => {
+                if (section.textContent.toLowerCase().includes(query)) {
+                    found = true;
+                    section.scrollIntoView({ behavior: 'smooth' });
+                    section.style.backgroundColor = '#d2f2d2';
+                    setTimeout(() => section.style.backgroundColor = '', 2000);
+                }
+            });
+
+            if (!found) {
+                alert('No results found. Please try a different keyword.');
+            }
+        });
+
+        document.getElementById('predictForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const age = document.getElementById('age').value;
+            const weight = document.getElementById('weight').value;
+            const smoking = document.getElementById('smoking').value;
+            
+            // Simulating risk prediction logic (you can replace this with real logic)
+            let risk = "Low";
+            if (age > 45 && (smoking === "smoker" || weight > 90)) {
+                risk = "High";
+            } else if (age > 35) {
+                risk = "Moderate";
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = `Your heart disease risk is: ${risk}`;
+        });
+    </script>
+</body>
+</html>

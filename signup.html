@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Existing styles remain unchanged */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f5f5; /* Fallback color */
+        }
+
+        /* Background image layer */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/static/images/mha.jpg'); /* Path to your background image */
+            background-size: cover;
+            background-position: center;
+            filter: blur(2px); /* Adds a blur effect */
+            z-index: 1;
+        }
+
+        .signup-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.18); /* Semi-transparent white */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            z-index: 2; /* Ensure container is above background */
+        }
+
+        .signup-container h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .signup-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .signup-container label {
+            text-align: left;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+        .signup-container input[type="text"],
+        .signup-container input[type="password"] {
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            background-color: transparent; /* Set background to transparent */
+        }
+
+        .signup-container button[type="submit"] {
+            padding: 10px;
+            font-size: 1em;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            background-color: #007bff;
+        }
+
+        .signup-container button[type="submit"]:hover {
+            background-color: #0056b3;
+            transition: background-color 0.3s;
+        }
+
+        .signup-container p {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .signup-container a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .signup-container a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .success-message {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Create Account</h2>
+        <form method="POST" action="/signup" id="signupForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required aria-label="Username" pattern=".{3,}" title="Username must be at least 3 characters long">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required aria-label="Password" pattern=".{6,}" title="Password must be at least 6 characters long">
+
+            <button type="submit">Sign Up</button>
+
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+
+            {% if success %}
+                <p class="success-message">{{ success }}</p>
+            {% endif %}
+        </form>
+
+        <p>Already have an account? <a href="/login">Login here</a></p>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Client-side validation for empty fields (in addition to required)
+            if (!username || !password) {
+                event.preventDefault(); // Prevent form submission
+                alert('Please fill in all fields.');
+            } else {
+                // Optionally, show a success message after form submission
+                // This part can be modified based on your server response
+                alert('Successfully signed up! Redirecting to login page...');
+                // You can use `setTimeout` to redirect after a few seconds if desired
+            }
+        });
+    </script>
+</body>
+</html>

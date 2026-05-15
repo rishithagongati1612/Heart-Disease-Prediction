@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Heart Disease Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/static/images/mha.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(2px);
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.403);
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        h1, h2 {
+            color: #0056b3;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin: 10px 0;
+            text-align: justify;
+            color: #030000a0;
+        }
+
+        .section {
+            margin: 30px 0;
+        }
+
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .team-member {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 10px;
+            border: 3px solid #0056b3;
+        }
+
+        .social-media a {
+            color: #0056b3;
+            margin: 0 5px;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+
+        .social-media a:hover {
+            color: #003d7a;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: hsl(0, 0%, 0%);
+            color: hsl(0, 0%, 100%);
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #0056b3;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .back-button:hover {
+            background-color: #003d7a;
+        }
+
+        @media (max-width: 768px) {
+            h1, h2 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>About Us</h1>
+        <div class="section">
+            <h2>Our Mission</h2>
+            <p>
+                Our mission is to harness the power of machine learning to improve healthcare and empower individuals with tools to take charge of their heart health. 
+                We aim to create accessible, accurate, and easy-to-use applications that help predict the risk of heart disease, allowing users to make informed decisions about their well-being.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Project Overview</h2>
+            <p>
+                The Heart Disease Prediction application is designed to predict the likelihood of heart disease using a variety of health metrics. 
+                Built with advanced machine learning algorithms, this project leverages a Random Forest Classifier and a user-friendly Flask-based interface. 
+                By inputting details like age, cholesterol levels, and physical activity, users receive a prediction report to help them assess their heart health.
+            </p>
+            <p>
+                Our system is continually evolving to incorporate new features that enhance accuracy and user experience, such as user login, result downloading, and additional health metrics.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Meet the Team</h2>
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="/static/images/rishi%201.jpg" alt="Rishitha Gongati">
+                    <h3>Sai Priya</h3>
+                    <p>Researcher and Data Scientist & Website Javascript</p>
+                    <div class="social-media">
+                        <a href="https://www.instagram.com/_rishitha_gongati"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/static/images/team2.jpg" alt="Mudavath Vinod">
+                    <h3>Mudavath Vinod</h3>
+                    <p>Flask Application Developer and Machine Learning</p>
+                    <div class="social-media">
+                        <a href="https://www.instagram.com/_vinod_4284"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/vinod-mudavath-170415322"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="/static/images/team3.jpg" alt="Sree Ram">
+                    <h3>Sree Ram</h3>
+                    <p>Designer and Lead Website Developer</p>
+                    <div class="social-media">
+                        <a href="https://www.instagram.com/sree_1703_"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="javascript:history.back()" class="back-button">Back</a>
+        </div>
+        
+        
+    </div>
+    
+
+    <div class="footer">
+        <p>&copy; 2024 Heart Disease Prediction. All Rights Reserved.</p>
+    </div>
+</body>
+</html>

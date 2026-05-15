@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external stylesheet -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            background-color: #f5f5f5;
+        }
+
+        /* Background image layer */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/static/images/mha.jpg'); /* Path to your background image */
+            background-size: cover;
+            background-position: center;
+            filter: blur(1px); /* Adds a blur effect */
+            z-index: 1;
+        }
+
+        /* Main login container styling */
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.485); /* Semi-transparent white */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-container h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        /* Form styles */
+        .login-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .login-container label {
+            text-align: left;
+            margin: 10px 0 5px;
+            color: #000000ae;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            background-color: rgba(240, 240, 240, 0.552); /* New background color */
+            padding: 12px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        /* Focus styles */
+        .login-container input[type="text"]:focus,
+        .login-container input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* Button styling */
+        .login-container button {
+            padding: 12px;
+            font-size: 1em;
+            color: hsl(0, 0%, 100%);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.2s; /* Added transform transition */
+        }
+
+        .login-container button[type="submit"] {
+            background-color: #007bff;
+        }
+
+        .login-container button[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.05); /* Scale effect on hover */
+        }
+
+        /* Google, Guest, and Sign-up button styling */
+        .login-container .google-btn {
+            background-color: #4285F4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container .google-btn i {
+            margin-right: 8px;
+        }
+
+        .login-container .google-btn:hover {
+            background-color: #357ae8;
+            transform: scale(1.05); /* Scale effect on hover */
+        }
+
+        .login-container .signup-btn {
+            background-color: #28a745;
+        }
+
+        .login-container .signup-btn:hover {
+            background-color: #218838;
+            transform: scale(1.05); /* Scale effect on hover */
+        }
+
+        .login-container .guest-btn {
+            background-color: #6c757d;
+        }
+
+        .login-container .guest-btn:hover {
+            background-color: #5a6268;
+            transform: scale(1.05); /* Scale effect on hover */
+        }
+
+        .login-container p {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .login-container a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-container a:hover {
+            text-decoration: underline;
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: #ff4d4d; /* Bright red color for error message */
+            margin-top: 10px;
+            font-weight: bold; /* Make the text bold */
+            font-size: 1em; /* Adjust font size as needed */
+        }
+
+        /* Media Queries for Mobile-First Design */
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 20px;
+                font-size: 0.9em;
+            }
+
+            .login-container h2 {
+                font-size: 1.5em;
+            }
+
+            .login-container input[type="text"],
+            .login-container input[type="password"],
+            .login-container button {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="POST" action="/login" onsubmit="return validateForm()">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required aria-label="Username">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required aria-label="Password">
+
+            <button type="submit">Login</button>
+
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+        </form>
+
+        <button onclick="window.location.href='/auth/google'" class="google-btn" aria-label="Continue with Google">
+            <i class="fab fa-google"></i> Continue with Google
+        </button>
+
+        <button onclick="window.location.href='/'" class="guest-btn" aria-label="Continue as Guest">
+            Continue as Guest
+        </button>
+
+        <button onclick="window.location.href='/signup'" class="signup-btn" aria-label="Create Account">
+            Create Account
+        </button>
+
+        <p><a href="/">Go to Home</a></p>
+    </div>
+
+    <script>
+        function validateForm() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username.trim() === '' || password.trim() === '') {
+                alert('Please fill out all fields.');
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+    </script>
+</body>
+</html>
