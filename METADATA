@@ -1,109 +1,123 @@
 Metadata-Version: 2.4
-Name: Werkzeug
-Version: 3.1.6
-Summary: The comprehensive WSGI web application library.
-Maintainer-email: Pallets <contact@palletsprojects.com>
-Requires-Python: >=3.9
-Description-Content-Type: text/markdown
-License-Expression: BSD-3-Clause
+Name: URLObject
+Version: 3.0.0
+Summary: A utility class for manipulating URLs.
+Author-email: Zachary Voase <zack@meat.io>
+Project-URL: Homepage, http://github.com/zacharyvoase/urlobject
+Keywords: URLObject
 Classifier: Development Status :: 5 - Production/Stable
-Classifier: Environment :: Web Environment
 Classifier: Intended Audience :: Developers
-Classifier: Operating System :: OS Independent
+Classifier: License :: Public Domain
 Classifier: Programming Language :: Python
-Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
-Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
-Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
-Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Middleware
-Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
-Classifier: Typing :: Typed
-License-File: LICENSE.txt
-Requires-Dist: markupsafe>=2.1.1
-Requires-Dist: watchdog>=2.3 ; extra == "watchdog"
-Project-URL: Changes, https://werkzeug.palletsprojects.com/page/changes/
-Project-URL: Chat, https://discord.gg/pallets
-Project-URL: Documentation, https://werkzeug.palletsprojects.com/
-Project-URL: Donate, https://palletsprojects.com/donate
-Project-URL: Source, https://github.com/pallets/werkzeug/
-Provides-Extra: watchdog
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Description-Content-Type: text/x-rst
 
-<div align="center"><img src="https://raw.githubusercontent.com/pallets/werkzeug/refs/heads/stable/docs/_static/werkzeug-name.svg" alt="" height="150"></div>
+URLObject 3
+===========
 
-# Werkzeug
+|PyPI| |Build Status| |Coverage Report| |Python Versions|
 
-*werkzeug* German noun: "tool". Etymology: *werk* ("work"), *zeug* ("stuff")
+``URLObject`` is a utility class for manipulating URLs. The latest
+incarnation of this library builds upon the ideas of its predecessor,
+but aims for a clearer API, focusing on proper method names over
+operator overrides. It's also being developed from the ground up in a
+test-driven manner, and has full Sphinx documentation.
 
-Werkzeug is a comprehensive [WSGI][] web application library. It began as
-a simple collection of various utilities for WSGI applications and has
-become one of the most advanced WSGI utility libraries.
+Installation
+------------
 
-It includes:
+URLObject is hosted on PyPI_. Install it using ``pip``:
 
--   An interactive debugger that allows inspecting stack traces and
-    source code in the browser with an interactive interpreter for any
-    frame in the stack.
--   A full-featured request object with objects to interact with
-    headers, query args, form data, files, and cookies.
--   A response object that can wrap other WSGI applications and handle
-    streaming data.
--   A routing system for matching URLs to endpoints and generating URLs
-    for endpoints, with an extensible system for capturing variables
-    from URLs.
--   HTTP utilities to handle entity tags, cache control, dates, user
-    agents, cookies, files, and more.
--   A threaded WSGI server for use while developing applications
-    locally.
--   A test client for simulating HTTP requests during testing without
-    requiring running a server.
+.. code:: sh
 
-Werkzeug doesn't enforce any dependencies. It is up to the developer to
-choose a template engine, database adapter, and even how to handle
-requests. It can be used to build all sorts of end user applications
-such as blogs, wikis, or bulletin boards.
+    pip install URLObject
 
-[Flask][] wraps Werkzeug, using it to handle the details of WSGI while
-providing more structure and patterns for defining powerful
-applications.
+Quickstart
+----------
 
-[WSGI]: https://wsgi.readthedocs.io/en/latest/
-[Flask]: https://www.palletsprojects.com/p/flask/
+Check out the
+`quickstart <https://urlobject.readthedocs.org/en/latest/quickstart.html>`__
+on ReadTheDocs to get started.
 
+(Un)license
+-----------
 
-## A Simple Example
+This is free and unencumbered software released into the public domain.
 
-```python
-# save this as app.py
-from werkzeug.wrappers import Request, Response
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any means.
 
-@Request.application
-def application(request: Request) -> Response:
-    return Response("Hello, World!")
+In jurisdictions that recognize copyright laws, the author or authors of
+this software dedicate any and all copyright interest in the software to
+the public domain. We make this dedication for the benefit of the public
+at large and to the detriment of our heirs and successors. We intend
+this dedication to be an overt act of relinquishment in perpetuity of
+all present and future rights to this software under copyright law.
 
-if __name__ == "__main__":
-    from werkzeug.serving import run_simple
-    run_simple("127.0.0.1", 5000, application)
-```
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
 
-```
-$ python -m app
-  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-```
+For more information, please refer to http://unlicense.org/
 
+Credits
+~~~~~~~
 
-## Donate
+This library bundles `six <http://packages.python.org/six/>`__, which is
+licensed as follows:
 
-The Pallets organization develops and supports Werkzeug and other
-popular packages. In order to grow the community of contributors and
-users, and allow the maintainers to devote more time to the projects,
-[please donate today][].
+    Copyright (c) 2010-2012 Benjamin Peterson
 
-[please donate today]: https://palletsprojects.com/donate
+    Permission is hereby granted, free of charge, to any person
+    obtaining a copy of this software and associated documentation files
+    (the "Software"), to deal in the Software without restriction,
+    including without limitation the rights to use, copy, modify, merge,
+    publish, distribute, sublicense, and/or sell copies of the Software,
+    and to permit persons to whom the Software is furnished to do so,
+    subject to the following conditions:
 
-## Contributing
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
 
-See our [detailed contributing documentation][contrib] for many ways to
-contribute, including reporting issues, requesting features, asking or answering
-questions, and making PRs.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+    BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+    ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 
-[contrib]: https://palletsprojects.com/contributing/
+Many thanks go to `Aron Griffis <http://arongriffis.com/>`__ for porting
+this library to Python 3, and to
+`vmalloc <https://github.com/vmalloc>`__ for work on the comprehensive
+API documentation and Sphinx setup.
 
+.. |PyPI| image:: https://img.shields.io/pypi/v/URLObject.svg?style=plastic
+   :target: PyPI_
+
+.. |Build Status| image:: https://img.shields.io/travis/zacharyvoase/urlobject/master.svg?style=plastic
+   :target: Travis_
+
+.. |Coverage Report| image:: https://img.shields.io/codecov/c/github/zacharyvoase/urlobject/master.svg?style=plastic
+   :target: CodeCov_
+
+.. |Python Versions| image:: https://img.shields.io/pypi/pyversions/urlobject.svg?style=plastic
+   :target: PyPI_
+
+.. _PyPI: https://pypi.python.org/pypi/URLObject
+
+.. _Travis: http://travis-ci.org/zacharyvoase/urlobject?branch=master
+
+.. _CodeCov: https://codecov.io/gh/zacharyvoase/urlobject/branch/master
