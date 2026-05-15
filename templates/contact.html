@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/static/images/mha.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(1.1px);
+            z-index: 1;
+        }
+
+        .header {
+            padding: 60px 0;
+            background: rgba(207, 216, 87, 0);
+            color: white;
+            font-size: 2.5em;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cccccc74;
+            border-radius: 5px;
+            margin-top: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .contact-form button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: rgba(255, 255, 255, 0.868);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #0056b3;
+            color: #ffffff;
+            position: relative;
+            z-index: 2;
+            margin-top: 30px;
+        }
+
+        .back-button {
+            margin-left: 10px;
+            padding: 12px 20px;
+            background-color: #6c757d;
+            color: rgba(255, 255, 255, 0.868);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+
+        .success-message {
+            color: green;
+            font-size: 1.1em;
+            margin-top: 20px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .contact-form button {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header {
+                font-size: 1.5em;
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                padding: 10px;
+            }
+
+            .contact-form button {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+    <script>
+        function showSuccessMessage() {
+            document.getElementById('success-message').style.display = 'block';
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</head>
+<body>
+    <div class="header">Contact Us</div>
+    <div class="container">
+        <form class="contact-form" action="/submit_contact" method="post" onsubmit="showSuccessMessage(); event.preventDefault();">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Submit</button>
+            <button type="button" class="back-button" onclick="goBack()">Back</button>
+        </form>
+        <p id="success-message" class="success-message">Thank you for contacting us! We will get back to you shortly.</p>
+        <button type="button" class="back-button" onclick="goBack()" style="display: none;" id="back-after-success">Back</button>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Heart Disease Prediction. All Rights Reserved.</p>
+    </div>
+    <script>
+        // Show "Back" button after displaying success message
+        document.querySelector('form').onsubmit = function() {
+            document.getElementById('success-message').style.display = 'block';
+            document.getElementById('back-after-success').style.display = 'block';
+        };
+    </script>
+</body>
+</html>

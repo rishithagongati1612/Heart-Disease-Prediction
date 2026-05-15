@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Existing CSS styles remain unchanged */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            background-image: url('/static/images/mha.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0.9;
+        }
+        h2, h3 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            font-size: 1.2em;
+            text-align: center;
+            color: #555;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #e9ecef;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        li:hover {
+            background: #d4d4d4;
+        }
+        .download-link, .back-link, .print-link, .share-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1em;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .download-link { background: #28a745; }
+        .download-link:hover { background: #218838; }
+        .back-link { background: #007BFF; }
+        .back-link:hover { background: #0056b3; }
+        .print-link { background: #ffc107; }
+        .print-link:hover { background: #e0a800; }
+        .share-link { background: #25D366; }
+        .share-link:hover { background: #128C7E; }
+        form {
+            margin: 20px 0;
+            text-align: center;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background-color: #0056b3; }
+        #feedback-message {
+            color: #28a745;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+        .rating {
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .star { color: gold; cursor: pointer; }
+        .star:hover { color: darkgoldenrod; }
+        #charts-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        canvas { max-width: 350px; max-height: 200px; }
+
+        /* New styles for additional features */
+        .goal-container {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .goal-container input {
+            width: calc(100% - 22px);
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .goal-container button {
+            background-color: #28a745;
+        }
+        .goal-container button:hover {
+            background-color: #218838;
+        }
+        .symptom-container {
+            margin: 20px 0;
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .symptom-container textarea {
+            width: 100%;
+            margin-top: 10px;
+        }
+        /* Tablet Screen */
+        @media (max-width: 900px) {
+            .container {
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .navbar a {
+                padding: 8px;
+                font-size: 1em;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            form {
+                max-width: 90%;
+                padding: 15px;
+            }
+
+            .search-box {
+                width: 80%;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Mobile Screen */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+                margin-top: 70px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                padding: 10px 0;
+                height: auto;
+            }
+
+            .navbar img {
+                height: 30px;
+                margin-bottom: 5px;
+            }
+
+            .navbar a {
+                padding: 5px;
+                font-size: 0.9em;
+            }
+
+            .search-container {
+                display: none; /* Hide search on small screens */
+            }
+
+            form {
+                padding: 10px;
+                margin-top: 10px;
+            }
+
+            button {
+                font-size: 1em;
+                padding: 8px 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Prediction Result</h2><!-- {{ name }} (Age: {{ age }}) -->
+        <p>Date: {{ current_date }}</p>
+        <p>Current Heart Condition: {{ heart_condition }}</p>
+        <p>{{ prediction_text }}</p>
+
+        <h3>Food Recommendations:</h3>
+        <ul>
+            {% for item in food_recommendations %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Exercise Recommendations:</h3>
+        <ul>
+            {% for item in exercise_recommendations %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Health Tips:</h3>
+        <ul>
+            {% for tip in health_tips %}
+                <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Personalized Tips Section -->
+        <h3>Personalized Tips</h3>
+        <p>Based on your condition, consider the following:</p>
+        <ul>
+            {% for tip in personalized_tips %}
+                <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Symptom Checker Section -->
+        <div class="symptom-container">
+            <h3>Symptom Checker</h3>
+            <textarea id="symptomInput" rows="4" placeholder="Enter any symptoms you are experiencing..."></textarea>
+            <button onclick="checkSymptoms()">Check Symptoms</button>
+            <div id="symptomResponse"></div>
+        </div>
+
+        <h3>Your Feedback</h3>
+        <div id="feedback-message">Thank you for your feedback!</div>
+        <form action="/feedback" method="POST" onsubmit="showFeedbackMessage(event)">
+            <div class="rating">
+                <span class="star" onclick="rateFeedback(1)">&#9733;</span>
+                <span class="star" onclick="rateFeedback(2)">&#9733;</span>
+                <span class="star" onclick="rateFeedback(3)">&#9733;</span>
+                <span class="star" onclick="rateFeedback(4)">&#9733;</span>
+                <span class="star" onclick="rateFeedback(5)">&#9733;</span>
+            </div>
+            <textarea name="feedback" rows="4" placeholder="Share your thoughts..." required></textarea>
+            <br>
+            <button type="submit">Submit Feedback</button>
+        </form>
+
+        <a class="download-link" href="/download/{{ result_file }}">
+            <i class="fas fa-download"></i> Download Prediction Results
+        </a>
+        <a class="back-link" href="/">Go Back</a>
+        <a class="print-link" href="javascript:window.print()">
+            <i class="fas fa-print"></i> Print Results
+        </a>
+        <a class="share-link" href="https://wa.me/?text=Check%20my%20heart%20prediction%20results%20here!%20{{ share_url }}" target="_blank">
+            <i class="fas fa-share-alt"></i> Share on WhatsApp
+        </a>
+
+        <h3>Health Metrics Over Time</h3>
+        <div id="charts-container">
+            <canvas id="healthScoreChart"></canvas>
+            <canvas id="exerciseActivityChart"></canvas>
+        </div>
+
+        <h3>Set Your Weekly Health Goals</h3>
+        <div class="goal-container">
+            <input type="text" id="healthGoal" placeholder="Enter your health goal...">
+            <button onclick="setHealthGoal()">Set Goal</button>
+            <div id="goalMessage"></div>
+        </div>
+
+        <h3>Contact Us</h3>
+        <form action="/contact" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="contact_message" rows="4" placeholder="Your message..." required></textarea>
+            <br>
+            <button type="submit">Send Message</button>
+        </form>
+
+        <h3>FAQs</h3>
+        <ul>
+            <li><strong>What should I do if my condition worsens?</strong> Contact your healthcare provider immediately.</li>
+            <li><strong>How often should I check my heart health?</strong> Regular check-ups are recommended; consult with your doctor.</li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Existing chart scripts remain unchanged
+
+        const ctx1 = document.getElementById('healthScoreChart').getContext('2d');
+        const healthScoreChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
+                datasets: [{
+                    label: 'Health Score',
+                    data: [8, 9, 7, 8.5, 9.5], // Example data; replace with actual metrics
+                    borderColor: 'rgba(40, 167, 69, 1)',
+                    backgroundColor: 'rgba(40, 167, 69, 0.2)',
+                    fill: true,
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10,
+                    }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('exerciseActivityChart').getContext('2d');
+        const exerciseActivityChart = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Running', 'Walking', 'Cycling', 'Swimming', 'Yoga'],
+                datasets: [{
+                    label: 'Weekly Exercise Hours',
+                    data: [3, 5, 2, 4, 1], // Example data; replace with actual metrics
+                    backgroundColor: [
+                        '#007BFF',
+                        '#FFC107',
+                        '#28A745',
+                        '#DC3545',
+                        '#17A2B8'
+                    ]
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function showFeedbackMessage(event) {
+            event.preventDefault(); // Prevent form submission
+            document.getElementById('feedback-message').style.display = 'block'; // Show message
+            setTimeout(() => {
+                event.target.reset(); // Reset form
+                document.getElementById('feedback-message').style.display = 'none'; // Hide message
+            }, 3000);
+        }
+
+        function rateFeedback(rating) {
+            console.log('User rating:', rating); // Handle the rating logic here
+        }
+
+        function checkSymptoms() {
+            const symptoms = document.getElementById('symptomInput').value;
+            // Replace with actual logic to process symptoms
+            document.getElementById('symptomResponse').innerText = "You entered: " + symptoms;
+        }
+
+        function setHealthGoal() {
+            const goal = document.getElementById('healthGoal').value;
+            // Logic to save the goal, e.g., send to the server
+            document.getElementById('goalMessage').innerText = "Your health goal has been set: " + goal;
+            document.getElementById('healthGoal').value = ''; // Clear the input
+        }
+    </script>
+</body>
+</html>
